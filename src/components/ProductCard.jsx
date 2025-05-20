@@ -9,7 +9,7 @@ const ProductCard = (product) => {
         <div className="image--container" >
             <img src={productItem.images[0]} />
             <span className='price-tag'>
-                {product.item}
+                
             </span>
         </div>
     </div>

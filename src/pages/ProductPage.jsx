@@ -6,18 +6,18 @@ import Breadcrumb from '../components/Breadcrumb';
 
 
 
-const ProductPage = () => {
+const  ProductPage =  () => {
 
   const { id } = useParams();
   const { data, error, loading, fetchDataId } = useFetchIdProduct(id);
 
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState();
 
   useEffect(() => {
     if(id){
       fetchDataId(id);
       setProduct(data)
-      console.log(data)
+      console.log('product', product)
     }else {
       console.log('id is null');
     }
@@ -25,11 +25,11 @@ const ProductPage = () => {
 
   if(loading) return <p>Loading...</p>
   if(error) return <p>Error: {error}</p>
-  if(!data) return  <p>No data</p>
+  if(!product) return  <p>No data</p>
 
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb title={product.title}/>
       <div className="product--container">
         
       </div>
