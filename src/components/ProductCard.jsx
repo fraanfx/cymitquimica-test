@@ -1,8 +1,18 @@
 import React from 'react'
 
-const ProductCard = () => {
+const ProductCard = (product) => {
+    const productItem =  product.item;
   return (
-    <div>ProductCard</div>
+    <div aria-label="producto">
+        <h3>{productItem.title}</h3>
+        <h6>{}</h6>
+        <div className="image--container" >
+            <img src={productItem.images[0]} />
+            <span className='price-tag'>
+                {product.item}
+            </span>
+        </div>
+    </div>
   )
 }
 

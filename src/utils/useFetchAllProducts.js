@@ -1,34 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+const useFetchAllProducts = ({ enabled = true } = {}) => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-const useFetchAllProducts  = () => {
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
 
-    const fetchData = async () => {
-        setLoading(true);
-        setError(null);
+    const url = 'https://dummyjson.com/products/?limit=10';
 
-        const url = 'https://dummyjson.com/products';
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      setData(result.products);
+    } catch (err) {
+      const message = err?.message || 'Something went wrong';
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        try{
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`); 
-              }
-              const result = (await response.json());
-              setData(result);
-            } catch (err) {
-              const message = err ? err.message : 'Something went wrong';
-              setError(message);
-            } finally {
-              setLoading(false);
-            }
-    };
+  useEffect(() => {
+    if (enabled) {
+      fetchData();
+    }
+  }, [enabled]);
 
-    return { data, error, loading, fetchData };
-
-}
+  return { data, error, loading, fetchData };
+};
 
 export default useFetchAllProducts;

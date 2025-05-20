@@ -30,6 +30,9 @@ const ProductPage = () => {
   return (
     <>
       <Breadcrumb />
+      <div className="product--container">
+        
+      </div>
 
     </>
   )
