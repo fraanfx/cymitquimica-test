@@ -59,18 +59,16 @@ const HomePage = () => {
    if(!products) return <p>No data</p>
   return (
     <>
-        <div className='container--search' aria-label="Buscador">
+        <div className='container--filters'>
             <SearchInput ref={searchRef} onSearchClick={handleSearchChange} placeholder="Busca en nuestra tienda" />
-        </div>
-        <div className="container--select">
-        <CategorySelect
+            <CategorySelect
             categories={categories}
             selected={category}
             onChange={handleCategoryChange}
             />
         </div>
-        <article className='container--grid'>
-            <div className="" aria-label='Elementos de la página'>
+        <article className={`container--grid${products.length < 1 ? '__empty' : ''}`} aria-label='Elementos de la página'>
+            
                { products && products.length > 0? (
                 
                    products.map((product) => (
@@ -81,11 +79,12 @@ const HomePage = () => {
                        
                    ))
                ) : (
-                <div className="">
-                    <button className="clear-tag" onClick={() => handleSearchChange('')} >Limpiar formulario</button>
+                <div className="container--empty-button">
+                    <p>No existen resultados para su búsqueda</p>
+                    <button className="clear--button" onClick={() => handleSearchChange('')} >Limpiar</button>
                 </div>
                )}
-            </div>
+            
         </article>
     </>
     

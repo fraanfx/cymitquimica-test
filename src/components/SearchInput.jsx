@@ -12,16 +12,16 @@ const SearchInput = forwardRef(({ placeholder, onSearchClick }, ref) => {
   }));
 
   return (
-    <div className="search--container">
+    <div className="search--container" aria-label='Buscador'>
       <div className="search--wrapper">
-        <Search className="search--icon" />
+       
         <input
           type="search"
           ref={inputRef}
-          className="search-input"
+          className="search--input"
           placeholder={placeholder}
         />
-        <button onClick={() => onSearchClick(inputRef.current?.value)}>Buscar</button>
+        <button className='search--button' onClick={() => onSearchClick(inputRef.current?.value)}> <Search className="search--icon" /></button>
       </div>
     </div>
   );
