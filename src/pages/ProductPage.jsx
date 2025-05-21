@@ -19,20 +19,32 @@ const ProductPage = () => {
       <Breadcrumb title={product.title} />
         <div className="product--grid">
           <div className="product--image">
-            <img src={`${product.images[0]}`} alt={product.title} />
+            <img src={`${product.thumbnail}`} alt={product.title} />
           </div>
           <div className="product--info">
-            <ol className='product--list'>
-              <li>{product.availabilityStatus}</li>
-            </ol>
-            <p className="product--description">
+          <p className="product--title">{product.title}</p>
+          
+
+          <p className="product--description">
               {product.description}
             </p>
+            <ul className='product--list'>
+              <li className={`list--availability${product.availabilityStatus === 'In Stock' ? '' : '__out'}`}>{product.availabilityStatus}</li>
+              <li>{product.shippingInformation}</li>
+              <li>{product.warrantyInformation}</li>
+            </ul>
+            
             <span className='product--price'>{product.price}€</span>
           </div>
-
+          {product.reviews.length > 0 &&
+              product.reviews.map((review) => {
+                <div className="product-review--container">
+                  <p>{review.comment}</p>
+                </div>
+              })
+          }
         </div>
-        {product.title}
+    
       </div>
     </>
   );

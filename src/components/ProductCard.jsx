@@ -8,7 +8,7 @@ const ProductCard = (product) => {
         <h6 className='card--subtitle'>{}</h6>
         <div className="image--container" >
             <img className='item--image' src={productItem.images[0]} />
-            <span className='price---tag'>
+            <span className='price--tag'>
                 {productItem.price.toFixed(2)}€
             </span>
         </div>

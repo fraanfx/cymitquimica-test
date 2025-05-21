@@ -4,9 +4,9 @@ import React from 'react';
 const CategorySelect = ({ categories, selected, onChange }) => {
     console.log(categories)
   return (
-    <div className="container--select">
+    <div className="select--container">
       <select
-        className="category-select"
+        className="select--category"
         aria-label="Filtrar por categoría"
         value={selected}
         onChange={(e) => onChange(e.target.value)}
