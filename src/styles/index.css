@@ -77,7 +77,6 @@ a{
     display: flex;
     flex-flow: row nowrap;
     margin: 20px 0;
-    align-items: center;
     color: var(--breadcrumb-grey);
   }
 
@@ -163,7 +162,7 @@ a{
   }
 
   .search--wrapper:focus, .search--wrapper:focus-visible, .search--wrapper:focus-within {
-    border: 1px solid var(--focus-color);
+    border: 1px solid #3182CE;
   }
 
   .search--icon {
@@ -333,6 +332,21 @@ a{
     display: block;
     text-align: left;
   }
+  .product--price,.product--price>span{
+    margin-top: 30px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    width: 100%;    
+    text-align: right;
+    width: 100%;
+    color: #000;
+    font-weight: bold;
+  }
+  .product--rating{
+    display: block;
+    text-align: right;
+    color: #ccbb3e;
+  }
   .product--list > li {
     margin-bottom: 20px;
     list-style: none;
@@ -354,8 +368,14 @@ a{
     text-align: right;
       font-size: 0.9rem;
       text-decoration: none;
+      margin-bottom: 5px;
       color: #666;
-  
+  }
+  .product--list > li:nth-child(3){
+    text-align: right;
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: #666;
   }
   .product--title{
     font-weight: 700;
@@ -376,16 +396,29 @@ a{
   p.product--description.last{
   margin-bottom: 20px;
   }
-  
-  .product--price{
-    margin-top: 30px;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    text-align: right;
-    width: 100%;
-    color: #000;
-    font-weight: bold;
+
+  .product--reviews{
+
   }
+  .product-review--container{
+    margin: 10px 0;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  .product-review--rate{
+    font-size: 1.2rem;
+  }
+  .product-review--comment{
+    font-size: 1rem;
+    margin-top: 3px;
+  }
+  .product-review--author{
+    font-size: .7rem;
+    justify-self: end;
+    opacity: .8;
+    margin-top: 4px;
+  }
+
 
 
 
@@ -417,7 +450,9 @@ a{
     .container--card > h6.card--subtitle{
       font-size: 0.7rem;
     }
-  
+    .breadcrumb--text{
+      font-size: 0.9rem;
+    }
     .image--container{
       aspect-ratio: 11 /10;
       width:100%;

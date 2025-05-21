@@ -7,7 +7,11 @@ const ProductPage = () => {
   const { id } = useParams();
   const { data: product, error, loading } = useFetchIdProduct(id);
 
-  console.log(product)
+  const fillStars = (rating) => {
+    const filledStars = '★'.repeat(rating);
+    const emptyStars = '☆'.repeat(5 - rating);
+    return filledStars + emptyStars;
+  }
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -22,27 +26,36 @@ const ProductPage = () => {
             <img src={`${product.thumbnail}`} alt={product.title} />
           </div>
           <div className="product--info">
-          <p className="product--title">{product.title}</p>
-          
+            <p className="product--title">{product.title}</p>
+            <p className="product--rating">{fillStars(Math.ceil(product.rating))}</p>
 
-          <p className="product--description">
+            <p className="product--description">
               {product.description}
             </p>
+            <div className='product--price'><span>{product.price}€</span></div>
             <ul className='product--list'>
               <li className={`list--availability${product.availabilityStatus === 'In Stock' ? '' : '__out'}`}>{product.availabilityStatus}</li>
+         
               <li>{product.shippingInformation}</li>
               <li>{product.warrantyInformation}</li>
             </ul>
             
-            <span className='product--price'>{product.price}€</span>
+
+            <div className="product--reviews">
+              { product && product.reviews.length > 0 ? (
+                product.reviews.map((review, idx) => (
+                  <div key={idx} className="product-review--container">
+                    <span className='product-review--rate'>{fillStars(review.rating)}</span>
+                    <p className='product-review--comment'>{review.comment}</p>
+                    <span className='product-review--author'>{review.reviewerName}</span>
+                  </div>)
+                )) : (
+                  <p>No hay comentarios</p>
+                )
+            }
+            </div>
           </div>
-          {product.reviews.length > 0 &&
-              product.reviews.map((review) => {
-                <div className="product-review--container">
-                  <p>{review.comment}</p>
-                </div>
-              })
-          }
+          
         </div>
     
       </div>
